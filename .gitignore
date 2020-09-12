@@ -1,0 +1,5 @@
+accounts.json
+temp/
+sendrecv.log
+secret.json
+node_modules/
