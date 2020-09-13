@@ -1,6 +1,7 @@
 const fs = require("fs");
 const secret = nocacherequire("./secret.json");
 const humanizeDuration = require("humanize-duration");
+const cp = require("child_process");
 
 function estimateTime(px, py, lx, ly) {
     let straightTimeH = Math.abs(lx - px);
@@ -32,7 +33,10 @@ module.exports.runBot = function (account, fulldata, rawsend, thisdata) {
 		var targetdir =
 			["s", "", "n"][Math.sign(secret.target.y - data.y) + 1]
 			+ ["w", "", "e"][Math.sign(secret.target.x - data.x) + 1];
-		if(!targetdir) throw new Error("At location!");
+		if(!targetdir) {
+            cp.spawnSync("notify-send", ["At location!", "-i", "notifications", "-t", "900"]);
+            throw new Error("At location!");
+        }
 		
 		process.stdout.write(", going "+targetdir);
 		
