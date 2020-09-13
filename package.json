@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "humanize-duration": "^3.23.1",
     "travelersapi": "^1.3.1"
   }
 }
