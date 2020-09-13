@@ -42,7 +42,9 @@ module.exports.runBot = function (account, fulldata, rawsend, thisdata) {
 		
 		send({ action: "setDir", dir: targetdir, autowalk: true });
 		send({ action: "doublestep", option: "add" });
-	}else{
+	}else if(data.state === "looting") {
+        send({ action: "loot_next" });
+    }else{
 		throw new Error("Invalid state "+data.state);
 	}
 	// console.log(account);
